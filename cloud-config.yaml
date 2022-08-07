@@ -1,0 +1,27 @@
+timezone: Asia/Tokyo
+locale: ja_JP.utf-8
+
+repo_update: true
+repo_upgrade: all
+
+packages:
+  - curl
+  - apt-transport-https
+  - ca-certificates
+  - software-properties-common
+  - gnupg
+  - lsb-release
+
+runcmd:
+  # docker
+  - curl -fsSL https://get.docker.com -o get-docker.sh
+  - sudo sh get-docker.sh
+  - sudo gpasswd -a ubuntu docker
+  # minikube 
+  - curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-arm64
+  - sudo install minikube-linux-arm64 /usr/local/bin/minikube
+  - echo 'alias kubectl="minikube kubectl --"' >> /home/ubuntu/.bashrc
+  - minikube start
+
+ssh_authorized_keys:
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDjQiM8sLv7+vR/9XN+DsUsb0q4mSBArxzingj4OnPrJdlKL4A1NqgdfHphnBeAZtXTa4t7kZeinERmFwov3inbfpDOIpE1cH5TGBKZzoo0v14TTAw/T0A1M0T5DuG1/Ney7aQPG5JPI4YRLjUj/g5PQvCocu+T09Vvk7ajyl7z1lxeoARIfeAXfuGA3/GzQkWhZf0jNNWEbqVpFZSFsLr3JCaTeQQkGaL8EOO5S9odNp2pLuBDSSNTRGMb5qMWoPtWmzhbg4alLRPS9nwMD9SkwWHR0nLdBssH9NFAEGAFB259HJfxLdHuq7g4MsOjFK5ehA51qihTbTiiT42cgC3YeXaPRK3dr1fxBMSeonqEJF4iSfLEC5THD1psTItBsNojHrn23i1p2dNYkOhXh++gsObCApIYZ43KmysJee7qrYqVBn6Y83u3Q5h5y+gnOx3hjwQwGfkBX3dO/wtXKzsccmhxdepPeedi0m+PmWcpEIOPBOffPYlFChQHDUhTN6Pzr41xywqpvE3DktiCdGCEHXaKcKfPjY5TXt6MbTOprI0HkRcVHdKa5OgN7Td+gANnCyOLZG2VkIDSoNUSmU5Himr3c7ZOT/z0olr1GRb7mTF87HwINh/jCpZqvLIAkGeSbhtAKVlm2u66hPq/0+7f0NHkmccQze1Fyb8bXxfYlw== shira@M1MBP2020.local
